@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * @author Stagiaire
+ *
+ */
+module testjavasolo {
+}
