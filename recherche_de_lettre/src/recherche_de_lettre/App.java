@@ -18,7 +18,7 @@ public class App {
 
 		// DEBUT PROGRAMME
 
-		System.out.println("saisir une chaine qui se termine par un point");
+		System.out.println("saisir une chaine de charactere qui se termine par un point");
 		chaine = sc.nextLine();
 
 		tableau_chaine = chaine.toCharArray();
