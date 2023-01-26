@@ -73,7 +73,7 @@ class Game {
 	    // code ...
 	   
 	        // initialize the board 
-	        board = new Piece[8][8]
+	        board = new Piece[8][8];
 	    
 	    public boolean isValidMove(Move move) {
 	        // Check if the start and end positions are within the board bounds
@@ -221,7 +221,8 @@ class Player {
         return this.color;
     }
 
-    public Move getMove(Board board) {
+    public Move getMove(Board board) 
+    {
     	private Scanner input = new Scanner(System.in);
     	   // Reading input from the console for startX, startY, endX, endY
         int startX = input.nextInt();
@@ -229,7 +230,8 @@ class Player {
         int endX = input.nextInt();
         int endY = input.nextInt();
         // create Move object with user inputs
-        return new Move(startX, startY, endX, endY);
+        return new Move(startX, startY, endX, endY) {
     }
+
+}	   
 }
-	   

@@ -34,6 +34,8 @@ public class App {
 		
 		// DEBUT DE PROGRAMME
 		
+		//test
+		
 		// utilisation de l'objet de pow( puissance) de la classe math (1er parametre de la variable le nombe,
 	
 		System.out.println("Programme de calcul de l'air d'une sphere");
