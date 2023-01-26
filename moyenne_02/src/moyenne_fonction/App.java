@@ -4,7 +4,7 @@ package moyenne_fonction;
 	import java.util.Scanner;
 
 	public class App {
-	    public static double moyenne(double num1, double num2) {
+	    public static double moyenneCalcul(double num1, double num2) {
 	        return (num1 + num2) / 2;
 	    }
 	    public static void main(String[] args) {
@@ -14,7 +14,7 @@ package moyenne_fonction;
 	        System.out.print("Entrez le deuxième nombre : ");
 	        double num2 = sc.nextDouble();
 	        
-	        double moyenne = moyenne(num1, num2);
+	        double moyenne = moyenneCalcul(num1, num2);
 	        System.out.println("La moyenne des deux nombres est : " + moyenne);
 	        sc.close();
 	    }
