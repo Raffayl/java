@@ -16,9 +16,10 @@ public class App {
 	        String nom = scanner.next();
 
 	        Bouteille bouteille = new Bouteille(capaciteEnL, contenanceEnL, estOuverte, nom);
+	        scanner.close();
+	   
 	    }
 	
-
 
 	}
 
