@@ -11,8 +11,12 @@ public class Bouteille {
 	// les methodes
 
 	public boolean ouvrir() {
-		estOuverte = true;
-		return estOuverte;
+		if (estOuverte) {
+			estOuverte = false;
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	public boolean fermer() {
@@ -21,33 +25,43 @@ public class Bouteille {
 	}
 
 	public boolean remplirTout() {
-		if (!estOuverte) {
+		if (estOuverte) {
+			if (contenuEnLitre < capaciteEnLitre) {
+				contenuEnLitre = capaciteEnLitre;
+				return true;
+			} else {
+				return false;
+			}
+
+		} else {
 			return false;
 		}
-		contenuEnLitre = capaciteEnLitre;
-		return true;
 	}
 
-public boolean remplir (double quantiteEnLitre) {
-		if (!estOuverte) {
+	public boolean remplir(double quantiteEnLitre) {
+		if (estOuverte) {
+			if (contenuEnLitre + quantiteEnLitre <= capaciteEnLitre) {
+				contenuEnLitre += quantiteEnLitre;
+				return true;
+			} else {
+				return false;
+			}
+		} else {
 			return false;
 		}
-		contenuEnLitre = quantiteEnLitre;
-		if (contenuEnLitre < capaciteEnLitre) {
-			contenuEnLitre = capaciteEnLitre;
-		}
-		return true;
-}
+
+	}
 
 	public boolean vidertout() {
 		if (!estOuverte) {
 			return false;
+		} else {
+			contenuEnLitre = 0;
+			return true;
 		}
-		contenuEnLitre = 0;
-		return true;
-		}
-	
-	public boolean vider (double quantiteEnLitre) {
+	}
+
+	public boolean vider(double quantiteEnLitre) {
 		if (!estOuverte) {
 			return false;
 		}
@@ -57,25 +71,34 @@ public boolean remplir (double quantiteEnLitre) {
 		}
 		return true;
 	}
-	
-	public String DonneLeNom()  {
+
+	public String DonneLeNom() {
 		return nom;
-		}
-	
+	}
+
 	// le constructeur par defaut
-	public Bouteille () {
+	public Bouteille() {
 		capaciteEnLitre = 1;
 		contenuEnLitre = 0;
-		estOuverte = false ;
-		nom = "";
+		estOuverte = true;
+		nom = "evian";
 	}
 
 // le constructeur classique
-	public Bouteille(double _capaciteEnLitre,double _contenuEnLitre, boolean _estOuverte, String _nom) {
+	public Bouteille(double _capaciteEnLitre, double _contenuEnLitre, boolean _estOuverte, String _nom) {
 		this.capaciteEnLitre = _capaciteEnLitre;
 		this.contenuEnLitre = _contenuEnLitre;
 		this.estOuverte = _estOuverte;
 		this.nom = _nom;
-		
-}
+
+	}
+
+	@override
+	public String toString() {
+
+		return "capaciteEnLitre = " + capaciteEnLitre + " contenanceEnLitre = " + contenuEnLitre + " estOuvert = "
+				+ estOuverte + " nom = " + nom;
+
+	}
+
 }
