@@ -78,7 +78,7 @@ public class PorteDeGarage {
 	public boolean ouvrirEntierement() {
 		if (!this.EstTotallementOuverte()) {
 			if (!this.estVerouille) {
-				this.degresOuverture = 90; // changer les valeurs de degresOuverture
+				this.degresOuverture = 90;
 				return true;
 			} else {
 				return false;
@@ -91,7 +91,7 @@ public class PorteDeGarage {
 
 	public boolean fermerEntierement() {
 		if (!this.EstTotallementFerme()) {
-			this.degresOuverture = 0; // changer les valeurs de degresOuverture
+			this.degresOuverture = 0;
 			return true;
 		} else {
 			return false;
@@ -99,38 +99,42 @@ public class PorteDeGarage {
 	}
 
 	public boolean ouvrir(int degres) {
-	    if (this.EstTotallementFerme()) {
-	        if (degres >= degreMinDOuverture && degres <= 90) {
-	            this.degresOuverture = degres;
-	            return true;
-	        } else {
-	            return false;
-	        }
-	    } else if (this.EstTotallementOuverte()) {
-	        return false;
-	    } else {
-	        int nouveauDegre = this.degresOuverture + degres;
-	        if (nouveauDegre >= degreMinDOuverture && nouveauDegre <= degreMaxDOuverture) {
-	            this.degresOuverture = nouveauDegre;
-	            return true;
-	        } else {
-	            return false;
-	        }
-	    }
+
+		if (this.EstTotallementFerme()) {
+			if (degres >= degreMinDOuverture && degres <= 90) {
+				this.degresOuverture = degres;
+				return true;
+			} else {
+				return false;
+			}
+		} else
+
+		if (this.EstTotallementOuverte()) {
+			return false;
+		} else {
+			int nouveauDegre = this.degresOuverture + degres;
+			if (nouveauDegre >= degreMinDOuverture && nouveauDegre <= degreMaxDOuverture) {
+				this.degresOuverture = nouveauDegre;
+				return true;
+			} else {
+				return false;
+			}
+		}
 	}
 
 	public boolean fermer(int degres) {
-	    if (!this.EstTotallementOuverte() && !this.EstTotallementFerme()) {
-	        if (degres <= degreMaxDOuverture && degres >= degreMinDOuverture) {
-	            this.degresOuverture -= degres;
-	            return true;
-	        } else {
-	            return false;
-	        }
-	    } else {
-	        return false;
-	    }
+		if (!this.EstTotallementOuverte() && !this.EstTotallementFerme()) {
+			if (degres <= degreMaxDOuverture && degres >= degreMinDOuverture) {
+				this.degresOuverture -= degres;
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
 	}
+
 	@Override
 	public String toString() {
 
