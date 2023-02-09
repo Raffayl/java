@@ -5,79 +5,53 @@ import java.util.Scanner;
 public class App {
 
 	public static void main(String[] args) {
-		
+
 		Scanner sc = new Scanner(System.in);
-		
-	
-		
-		//VARIABLES
-		
-		int numero = 1;
-		int mois = 1;
-		int pair= 12%2;
-		int impair = 11%3;
-		int janvier = 1;			//string janvier ne fonctionne pas ..
-		int  fevrier=2;int mars=3;int avril=4;int mai=5;int juin=6;int juillet=7;int aout=8;int septembre=9;int octobre = 10;int novembre =11 ; int  decembre = 12;
-	
-		// Debut de programme :
-		
-		while (numero <12 && numero >1); {
-		(numero<=12);
-		numero++;
-		  System.out.println("Entrez un numero de mois compris entre 1 et 12 : ");
-		  mois=sc.nextInt();
-		  do {
-			  if  (mois % 1 ==0)
-			  numero = 1;
-			 mois = janvier;
-			  
-		 	  if (mois % 2 ==0)
-		 	   numero=2;
-		  		mois= fevrier;
-		  	  if (mois % 3 ==0)
-		  	  numero=3;
-		  	  mois = mars;
-		  	if (mois % 2 ==0)
-		  		numero = 4;
-			  mois = avril;
-			  if (mois % 3 ==0)
-			  numero = 5;
-			  mois = mai;
-			  if (mois % 2 ==0)
-			  numero = 6;
-			  mois = juin;
-			  if (mois % 3 ==0)
-			  numero = 7;
-			  mois = juillet;
-			  if (mois % 2 ==0)
-			  numero = 8;
-			  mois = aout;
-			  if (mois % 3 ==0)
-			  numero = 9;
-			  mois = septembre;
-			  if (mois % 2==0)
-			  numero = 10;
-			  mois = octobre;
-			  if (mois % 3 ==0)
-			  numero = 11;
-			  mois = novembre;
-			  if (mois % 2 ==0)
-			  numero = 12;
-			  mois = decembre;
-		 System.out.println(mois);
-		  
-		 
+
+		int mois;
+
+		int[] joursdanslemois = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+		{
+
+			System.out.print("Entrez un numéro de mois de 1 a 12): ");
+			mois = sc.nextInt();
+
+			String[] nomdumois = new String[12];
+			nomdumois[0] = "janvier";
+			nomdumois[1] = "fevrier";
+			nomdumois[2] = "mars";
+			nomdumois[3] = "avril";
+			nomdumois[4] = "mai";
+			nomdumois[5] = "juin";
+			nomdumois[6] = "juillet";
+			nomdumois[7] = "aout";
+			nomdumois[8] = "septembre";
+			nomdumois[9] = "octobre";
+			nomdumois[10] = "novembre";
+			nomdumois[11] = "decembre";
+
+			System.out.println("Le mois sélectionné est : " + nomdumois[mois - 1]);
 		}
-		while (numero > 1 && numero <12);
-		      System.out.println( numero + "n'est pas un mois  recommencé");
-		    return;
-		
-		 }
+
+		while (mois < 1 || mois > 12)
+			;
+
+		if (mois % 2 == 0) {
+			System.out.print("Nombres de jours impairs: ");
+			for (int i = 1; i <= joursdanslemois[mois - 1]; i++) {
+				if (i % 2 != 0) {
+					System.out.print(i + " ");
+				}
+			}
+
+		} else {
+			System.out.print("Nombres de jours pairs (sauf ceux qui se terminent par 0): ");
+			for (int i = 1; i <= 31; i++) {
+				if (i % 2 == 0 && i % 10 != 0) {
+					System.out.print(i + " ");
+				}
+			}
+		}
 		sc.close();
-		  }  	 
-	
-
-
-
 	}
-	
+}

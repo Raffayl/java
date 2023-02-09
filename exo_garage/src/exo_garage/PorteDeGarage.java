@@ -41,7 +41,15 @@ public class PorteDeGarage {
 			return false;
 		}
 	}
-
+	// partielement fermer
+	
+	public boolean partiellementFermer() {
+		if (this.degreOuverture < this.DEGREMAX && this.degreOuverture > this.DEGREMIN) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	// Verrouiller
 
 	public boolean verrouiller() {
@@ -52,7 +60,15 @@ public class PorteDeGarage {
 			return false;
 		}
 	}
-
+	// deverouiller
+	public boolean unlock() {
+		if(this.degreOuverture == DEGREMAX && this.verrouille == false) {
+			this.verrouille = false;
+			return false;
+		} else {
+			return true;
+		}
+		}
 	// Ouvrir
 
 	public boolean ouvrir(int degreOuvertureAjoutee) {
@@ -67,7 +83,17 @@ public class PorteDeGarage {
 			return false;
 		}
 	}
-
+ // fermer
+	public boolean fermer(int degrefermetureAjoutee) {
+		if (degrefermetureAjoutee > 0
+			&& this.degreOuverture - degrefermetureAjoutee >= this.DEGREMIN ) {
+				this.degreOuverture -= degrefermetureAjoutee;
+				return true;
+			} else {
+				return false;
+			}
+			
+	}
 	// to String ------------------------
 	@Override
 
