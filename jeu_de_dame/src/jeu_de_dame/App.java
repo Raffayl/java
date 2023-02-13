@@ -1,237 +1,164 @@
-
 package jeu_de_dame;
+
 import java.util.Scanner;
-import java.util.ArrayList;
+
+enum Color {
+	WHITE, BLACK
+}
 
 class Piece {
-    public enum Color {
-        WHITE, BLACK
-    }
+	private Color color;
+	private int x;
+	private int y;
 
-    private Color color;
-    private int x;
-    private int y;
+	public Piece(Color color, int x, int y) {
+		this.color = color;
+		this.x = x;
+		this.y = y;
+	}
 
-    public Piece(Color color, int x, int y) {
-        this.color = color;
-        this.x = x;
-        this.y = y;
-    }
+	public Color getColor() {
+		return color;
+	}
 
-    public Color getColor() {
-        return color;
-    }
+	public int getX() {
+		return x;
+	}
 
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
+	public int getY() {
+		return y;
+	}
 }
+
 class Move {
-    private int startX;
-    private int startY;
-    private int endX;
-    private int endY;
+	private int startX;
+	private int startY;
+	private int endX;
+	private int endY;
 
-    public Move(int startX, int startY, int endX, int endY) {
-        this.startX = startX;
-        this.startY = startY;
-        this.endX = endX;
-        this.endY = endY;
-    }
+	public Move(int startX, int startY, int endX, int endY) {
+		this.startX = startX;
+		this.startY = startY;
+		this.endX = endX;
+		this.endY = endY;
+	}
 
-    public int getStartX() {
-        return startX;
-    }
+	public int getStartX() {
+		return startX;
+	}
 
-    public int getStartY() {
-        return startY;
-    }
+	public int getStartY() {
+		return startY;
+	}
 
-    public int getEndX() {
-        return endX;
-    }
+	public int getEndX() {
+		return endX;
+	}
 
-    public int getEndY() {
-        return endY;
-    }
-}
-
-public class App{
-    public static void main(String[] args) {
-        Game game = new Game();
-        game.start();
-    }
-}
-
-class Game {
-	private Player currentPlayer;
-	   private Piece[][] board
-	    // code ...
-	   
-	        // initialize the board 
-	        board = new Piece[8][8];
-	    
-	    public boolean isValidMove(Move move) {
-	        // Check if the start and end positions are within the board bounds
-	        int startX = move.getStartX();
-	        int startY = move.getStartY();
-	        int endX = move.getEndX();
-	        int endY = move.getEndY();
-	        if(startX<0 || startX > 8 || startY<0 || startY > 8) return false;
-	        if(endX<0 || endX > 8 || endY<0 || endY > 8) return false;
-	        // check if the piece at the start position belongs to the current player
-	        if (board[startX][startY].getColor() != currentPlayer.getColor()) return false;
-	        // check if the end position is a valid destination for the piece
-	        if (board[endX][endY].getColor() == currentPlayer.getColor()) return false;
-	        // check if the move respect the rules of the piece
-	        if (board[startX][startY].isPiece() ) {
-	            if(startX-endX != 1 || Math.abs(startY-endY) != 1) return false;
-	        } else {
-	            // check for special moves for queen
-	        }
-	        // Check for captures
-	        // check if the game is blocked
-	        return true;
-	    }
-	
-    
-    private Player player1;
-    private Player player2;
-
-    public Game() {
-        this.board = new Board();
-        this.player1 = new Player("Player 1", Piece.Color.WHITE);
-        this.player2 = new Player("Player 2", Piece.Color.BLACK);
-    }
-
-    public void start() {
-        while (true) {
-            // Print the current state of the board
-            System.out.println(board);
-
-            // Get the current player's move
-            Player currentPlayer = getCurrentPlayer();
-            Move move = currentPlayer.getMove(board);
-
-            // Validate the move
-            while (!board.isValidMove(move)) {
-                System.out.println("Invalid move,\n please try again.");
-                move = currentPlayer.getMove(board);
-            }
-
-            // Make the move on the board
-            board.makeMove(move);
-
-            // Check if the game is over
-            if (board.isGameOver()) {
-                System.out.println("Game over! The winner is: " + currentPlayer.getName());
-                break;
-            }
-
-            // Switch players
-            switchPlayers();
-        }
-    }
-
-    private Player getCurrentPlayer() {
-    	
-        // Code to determine the current player
-    	return player1;
-    }
-
-    private void switchPlayers() {
-        // Code to switch the current player
-    }
-}
-
-
-class Board {
-private ArrayList<Piece> pieces;
-    //remaining code 
-    public boolean isValidMove(Move move) {
-    	// code to check if the move is valid according to the rules of the game
-    	// Check if the start and end positions are within the board bounds
-        int startX = move.getStartX();
-        int startY = move.getStartY();
-        int endX = move.getEndX();
-        int endY = move.getEndY();
-        if(startX<0 || startX > 8 || startY<0 || startY > 8) return false;
-        if(endX<0 || endX > 8 || endY<0 || endY > 8) return false;
-        // check if the piece at the start position belongs to the current player
-        if (board[startX][startY].getColor() != currentPlayer.getColor()) return false;
-        // check if the end position is a valid destination for the piece
-        if (board[endX][endY].getColor() == currentPlayer.getColor()) return false;
-        // check if the move respect the rules of the piece
-        if (board[startX][startY].isPiece() ) {
-            if(startX-endX != 1 || Math.abs(startY-endY) != 1) return false;
-        } else {
-            // check for special moves for queen
-        }
-        // Check for captures
-        // check if the game is blocked
-        return true;
-    }
-    public boolean isGameOver() {
-        // code to check if the game is over
-    }
-    public void makeMove(Move move) {
-        // code to make the move on the board, including capturing pieces if applicable
-        // and promoting pawns if they reach the opposite side
-    }
-    public String toString() {
-        // code to create a string representation of the board
-    }
+	public int getEndY() {
+		return endY;
+	}
 }
 
 class Player {
-	   public boolean isValidMove(Move move) {
-	        // check if the move is valid, for example:
-	        // 1. Check if the start and end positions are within the board bounds
-	        // 2. Check if the piece at the start position belongs to the current player
-	        // 3. Check if the end position is a valid destination for the piece
-	        // 4. return true if the move is valid, false otherwise
-	        int startX = move.getStartX();
-	        int startY = move.getStartY();
-	        int endX = move.getEndX();
-	        int endY = move.getEndY();
-	        
-	        if(startX<0 || startX > 8 || startY<0 || startY > 8) return false; //verify if startX and startY are inside the board limit
-	        if(endX<0 || endX > 8 || endY<0 || endY > 8) return false; //verify if endX and endY are inside the board limit
-	        //more control here
-	        return true;
-	   }
-    private String name;
-    private Piece.Color color;
-    
+	private String name;
+	private Color color;
 
-    public Player(String name, Piece.Color color) {
-        this.name = name;
-        this.color = color;
-    }
+	public Player(String name, Color color) {
+		this.name = name;
+		this.color = color;
+	}
 
-    public String getName() {
-        return this.name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public Piece.Color getColor() {
-        return this.color;
-    }
+	public Color getColor() {
+		return color;
+	}
 
-    public Move getMove(Board board) 
-    {
-    	private Scanner input = new Scanner(System.in);
-    	   // Reading input from the console for startX, startY, endX, endY
-        int startX = input.nextInt();
-        int startY = input.nextInt();
-        int endX = input.nextInt();
-        int endY = input.nextInt();
-        // create Move object with user inputs
-        return new Move(startX, startY, endX, endY) {
-    }
+	public Move getMove(Board board) {
+		Scanner Scanner = new Scanner(System.in);
+		System.out.println(getName() + " (" + getColor() + ") turn:");
+		System.out.print("Enter start x: ");
+		int startX = Scanner.nextInt();
+		System.out.print("Enter start y: ");
+		int startY = Scanner.nextInt();
+		System.out.print("Enter end x: ");
+		int endX = Scanner.nextInt();
+		System.out.print("Enter end y: ");
+		int endY = Scanner.nextInt();
+		return new Move(startX, startY, endX, endY);
+	}
+}
 
-}	   
+class Board {
+	private Piece[][] grid;
+
+	public Board() {
+		this.grid = new Piece[8][8];
+	}
+
+	public void makeMove(Move move) {
+		// code to make the move on the board
+	}
+
+	public boolean isGameOver() {
+		// code to determine if the game is over
+		return false;
+	}
+}
+
+class Queen extends Piece {
+	public Queen(Color color, int x, int y) {
+		super(color, x, y);
+	}
+
+	public class Pawn {
+		private int x;
+		private int y;
+		private boolean isWhite;
+		private boolean isQueen;
+
+		public Pawn(int x, int y, boolean isWhite, boolean isQueen) {
+			this.x = x;
+			this.y = y;
+			this.isWhite = isWhite;
+			this.isQueen = isQueen;
+		}
+
+		class Pawnmoove extends Piece {
+			public Pawnmoove(Color color, int x, int y) {
+				super(color, x, y);
+			}
+
+			public boolean isValidMove(Move move, Piece[][] board) {
+				int destX = move.getEndX();
+				int destY = move.getEndY();
+				int startX = move.getStartX();
+				int startY = move.getStartY();
+				int direction = getColor() == Color.WHITE ? 1 : -1;
+
+				if (startX + direction == destX && startY == destY) {
+					// Le mouvement est un déplacement simple d'une case vers l'avant
+					if (board[destX][destY] == null) {
+						return true;
+					} else {
+						return false;
+					}
+				} else if (startX + direction == destX && Math.abs(startY - destY) == 1) {
+					// Le mouvement est une prise de pièce
+					if (board[destX][destY] != null && board[destX][destY].getColor() != getColor()) {
+						return true;
+					} else {
+						return false;
+					}
+				} else {
+					// Le mouvement n'est pas valide pour une pièce Pawn
+					return false;
+					
+				}
+			}
+		}
+	}
 }

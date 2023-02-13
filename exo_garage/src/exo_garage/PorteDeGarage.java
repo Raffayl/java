@@ -11,8 +11,12 @@ public class PorteDeGarage {
 	private Boolean verrouille;
 
 	// Constructeurs ---------------------------------
-
-	public PorteDeGarage() { // constructeur par défaut
+	
+	
+	// constructeur par défaut
+	
+	public PorteDeGarage() { 		
+		
 		this.MARQUE = "ABCD";
 		this.degreOuverture = 0;
 		this.DEGREMAX = 90;
@@ -20,9 +24,10 @@ public class PorteDeGarage {
 		this.verrouille = true;
 	}
 
-	public PorteDeGarage(String _marque, int _degreOuverture, int _degreMax, int _degreMin, Boolean _verrouille) { // constructeur
-																													// classique
+	// constructeur classique
 
+	public PorteDeGarage(String _marque, int _degreOuverture, int _degreMax, int _degreMin, Boolean _verrouille) { 
+		
 		this.MARQUE = _marque;
 		this.degreOuverture = _degreOuverture;
 		this.DEGREMAX = _degreMax;
@@ -42,7 +47,7 @@ public class PorteDeGarage {
 		}
 	}
 	// partielement fermer
-	
+
 	public boolean partiellementFermer() {
 		if (this.degreOuverture < this.DEGREMAX && this.degreOuverture > this.DEGREMIN) {
 			return true;
@@ -60,40 +65,39 @@ public class PorteDeGarage {
 			return false;
 		}
 	}
+
 	// deverouiller
 	public boolean unlock() {
-		if(this.degreOuverture == DEGREMAX && this.verrouille == false) {
+		if (this.degreOuverture == DEGREMAX && this.verrouille == false) {
 			this.verrouille = false;
 			return false;
 		} else {
 			return true;
 		}
-		}
+	}
 	// Ouvrir
 
 	public boolean ouvrir(int degreOuvertureAjoutee) {
-		if (
-				!this.verrouille
-				&& degreOuvertureAjoutee > 0
-				&& this.degreOuverture + degreOuvertureAjoutee <= this.DEGREMAX
-				) {
-			this.degreOuverture += degreOuvertureAjoutee; 
+		if (!this.verrouille && degreOuvertureAjoutee > 0
+				&& this.degreOuverture + degreOuvertureAjoutee <= this.DEGREMAX) {
+			this.degreOuverture += degreOuvertureAjoutee;
 			return true;
 		} else {
 			return false;
 		}
 	}
- // fermer
+
+	// fermer
 	public boolean fermer(int degrefermetureAjoutee) {
-		if (degrefermetureAjoutee > 0
-			&& this.degreOuverture - degrefermetureAjoutee >= this.DEGREMIN ) {
-				this.degreOuverture -= degrefermetureAjoutee;
-				return true;
-			} else {
-				return false;
-			}
-			
+		if (degrefermetureAjoutee > 0 && this.degreOuverture - degrefermetureAjoutee >= this.DEGREMIN) {
+			this.degreOuverture -= degrefermetureAjoutee;
+			return true;
+		} else {
+			return false;
+		}
+
 	}
+
 	// to String ------------------------
 	@Override
 
@@ -104,4 +108,3 @@ public class PorteDeGarage {
 				+ this.verrouille;
 	}
 }
-
