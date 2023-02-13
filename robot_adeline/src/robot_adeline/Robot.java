@@ -192,5 +192,5 @@ public class Robot {
 				+ "Position du robot (horizontale, verticale) : " + this.positionX + ", " + this.positionY + "\r\n"
 				+ "--------------------------------------------------------------";
 	}
-
+// test
 }
