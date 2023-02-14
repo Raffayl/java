@@ -2,118 +2,127 @@ package robot_ACéKaCé;
 
 public class RobotMenager {
 
-    private String nom;
-    public BrasRobotique brasRobotique;
-    public Capteur capteur;
-    public Plateau plateau;
-    public Outil outil;
-    public InterfaceUtilisateur interfaceUtilisateur;
+	private String nom;
+	public BrasRobotique brasRobotique;
+	public Capteur capteur;
+	public Plateau plateau;
+	public Outil outil;
 
-    public RobotMenager(String nom, BrasRobotique brasRobotique, Capteur capteur, Plateau plateau, Outil outil,
-            InterfaceUtilisateur interfaceUtilisateur) {
-        this.nom = nom;
-        this.brasRobotique = brasRobotique;
-        this.capteur = capteur;
-        this.plateau = plateau;
-        this.outil = outil;
-        this.interfaceUtilisateur = interfaceUtilisateur;
-    }
+	public RobotMenager(String nom, BrasRobotique brasRobotique, Capteur capteur, Plateau plateau, Outil outil) {
+		this.nom = nom;
+		this.brasRobotique = brasRobotique;
+		this.capteur = capteur;
+		this.plateau = plateau;
+		this.outil = outil;
+	}
 
-    public void effectuerTache() {
-        // Utilise le bras robotique pour saisir l'outil et l'utiliser pour nettoyer le plateau
-        brasRobotique.saisir(outil);
-        outil.nettoyer(plateau);
-        brasRobotique.lacher(outil);
+	public void effectuerTache() {
+		brasRobotique.saisir(outil);
+		brasRobotique.lacher(outil);
+		outil.nettoyer(plateau);
+		brasRobotique.lacher(outil);
 
-        // Utilise le capteur pour détecter les obstacles et ajuster la position du robot si nécessaire
-        if (capteur.detecterObstacle()) {
-            brasRobotique.remonter();
-            // Ajoute des instructions pour ajuster la position du robot ici
-            brasRobotique.descendre();
-        }
-    }
+		if (capteur.detecterObstacle()) {
+			brasRobotique.remonter();
+			brasRobotique.descendre();
+		}
+	}
 
-    // Getters and setters for instance variables
-    public String getNom() {
-        return nom;
-    }
+	public String getNom() {
+		return nom;
+	}
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
 
-    public BrasRobotique getBrasRobotique() {
-        return brasRobotique;
-    }
+	public BrasRobotique getBrasRobotique() {
+		return brasRobotique;
+	}
 
-    public void setBrasRobotique(BrasRobotique brasRobotique) {
-        this.brasRobotique = brasRobotique;
-    }
+	public void setBrasRobotique(BrasRobotique brasRobotique) {
+		this.brasRobotique = brasRobotique;
+	}
 
-    public Capteur getCapteur() {
-        return capteur;
-    }
+	public Capteur getCapteur() {
+		return capteur;
+	}
 
-    public void setCapteur(Capteur capteur) {
-        this.capteur = capteur;
-    }
+	public void setCapteur(Capteur capteur) {
+		this.capteur = capteur;
+	}
 
-    public Plateau getPlateau() {
-        return plateau;
-    }
+	public Plateau getPlateau() {
+		return plateau;
+	}
 
-    public void setPlateau(Plateau plateau) {
-        this.plateau = plateau;
-    }
+	public void setPlateau(Plateau plateau) {
+		this.plateau = plateau;
+	}
 
-    public Outil getOutil() {
-        return outil;
-    }
+	public Outil getOutil() {
+		return outil;
+	}
 
-    public void setOutil(Outil outil) {
-        this.outil = outil;
-    }
+	public void setOutil(Outil outil) {
+		this.outil = outil;
+	}
 
-    public InterfaceUtilisateur getInterfaceUtilisateur() {
-        return interfaceUtilisateur;
-    }
-
-    public void setInterfaceUtilisateur(InterfaceUtilisateur interfaceUtilisateur) {
-        this.interfaceUtilisateur = interfaceUtilisateur;
-    }
 }
 
 class BrasRobotique {
-    public void saisir(Outil outil) {
-        // Code to pick up the tool with the robot arm
-    }
+	public void saisir(Outil outil) {
+		// Code pour saisir loutil avec le bras du robot
+	}
 
-    public void lacher(Outil outil) {
-        // Code to release the tool with the robot arm
-    }
+	public void lacher(Outil outil) {
+		// Code pourrelacher l'outil avec le bras du robot
+	}
 
-    public void remonter() {
-        // Code to move the robot arm up
-    }
+	public void remonter() {
+		// Code pour remonter le bras du robot
+	}
 
-    public void descendre() {
-        // Code to move the robot arm down
-    }
+	public void descendre() {
+		// Code pour descendre le bras du robot 
+	}
 }
 
 class Capteur {
-    public boolean detecterObstacle() {
-        // Code to detect if there is an obstacle
-        return false; // replace with actual implementation
-    }
+	public boolean detecterObstacle() {
+		// Code pour detecter si il ya un obstacle
+		return false; 
+	}
 }
 
 class Plateau {
-    // Code for the Plateau class
+	// Code pour la class plateau
 }
 
 class Outil {
-    public void nettoyer(Plateau plateau) {
-        // Code to clean the Plateau with the tool
-    }
+	public void nettoyer(Plateau plateau) {
+		// Code pour nettoyer le plateau avec l'outil
+	
+	}	
+	
+	
+	
+	// a faire 
+	//	@Override
+	//	public String toString() {
+
+		//	return "Coordonnees X (en m) : " + this.coordonneeXEnM + "\nCoordonnees Y (en m) : " + this.coordonneeYEnM
+		//			+ "\nAngle (en degres) : " + this.angleEnDegres + "\nBras gauche leve : " + this.brasGaucheLeve
+		//			+ "\nBras droit leve : " + this.brasDroitLeve + "\nPince femeee : " + this.pinceFermee
+		//			+ "\nLanterne allumee : " + this.lanterneAllumee + "\n---------------------";
+
+	
+	
+	
+	
+	
+	
+	}
+	
+	
 }

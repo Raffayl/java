@@ -8,7 +8,7 @@ public class App {
 
 		System.out.println(robi);
 
-		robi.avancer(1);
+		robi.avancer(3);
 		System.out.println(robi);
 
 		robi.tournerADroite(45);
