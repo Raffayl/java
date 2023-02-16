@@ -1,5 +1,8 @@
 package ACKC;
-public class RobotMenager {
+
+import ACKC.RobotMenager2.Outil;
+
+public class RobotMenager2 {
 
 	private String nom;
 	public BrasRobotique brasRobotique;
@@ -7,7 +10,7 @@ public class RobotMenager {
 	public Plateau plateau;
 	public Outil outil;
 
-	public RobotMenager(String nom, BrasRobotique brasRobotique, Capteur capteur, Plateau plateau, Outil outil, Capteur[] capteurs) {
+	public RobotMenager2(String nom, BrasRobotique brasRobotique, Capteur capteur, Plateau plateau, Outil outil, Capteur[] capteurs) {
 		this.nom = nom;
 		this.brasRobotique = brasRobotique;
 		this.plateau = plateau;
@@ -17,17 +20,33 @@ public class RobotMenager {
 		this.capteur = new Capteur(this.plateau, this.brasRobotique, this.outil, capteurs);
 	}
 
-	public RobotMenager() {
+	public void RobotMenager() {
 		this.nom = "rafbot";
-		this.brasRobotique = brasRobotique;
-		this.plateau = plateau;
+		this.brasRobotique = new BrasRobotique();
+		this.plateau = new Plateau();
+		this.outil = Outil.COUPER; // Par défaut, on utilise le couteau
 	}
 
 	public void effectuerTache() {
-		brasRobotique.saisir(outil);
-		brasRobotique.lacher(outil);
-		outil.nettoyer(plateau);
-		brasRobotique.lacher(outil);
+		switch (outil) {
+			case COUPER:
+				brasRobotique.saisir(outil);
+				brasRobotique.lacher(outil);
+				// Code pour couper avec le couteau
+				break;
+			case FOUET:
+				brasRobotique.saisir(outil);
+				brasRobotique.lacher(outil);
+				// Code pour mélanger avec le fouet
+				break;
+			case PETRIR:
+				brasRobotique.saisir(outil);
+				brasRobotique.lacher(outil);
+				// Code pour pétrir avec la feuille
+				break;
+			default:
+				System.out.println("Outil inconnu !");
+		}
 
 		if (capteur.detecterObstacle()) {
 			brasRobotique.remonter();
@@ -74,13 +93,20 @@ public class RobotMenager {
 	public void setOutil(Outil outil) {
 		this.outil = outil;
 	}
-}
 
-class BrasRobotique {
+	public enum Outil {
+		COUPER,
+		FOUET,
+		PETRIR
+	}
+
+
+
 	public void saisir(Outil outil) {
 		// Code pour saisir l'outil avec le bras du robot
-	
 	}
+
+	
 
 	public void lacher(Outil outil) {
 		// Code pour relâcher l'outil avec le bras du robot
@@ -92,16 +118,6 @@ class BrasRobotique {
 
 	public void descendre() {
 		// Code pour descendre le bras du robot
-	}
-}
-
-class Plateau {
-	// Code pour la classe Plateau
-}
-
-class Outil {
-	public void nettoyer(Plateau plateau) {
-		// Code pour nettoyer le plateau avec l'outil
 	}
 }
 

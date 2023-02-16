@@ -1,4 +1,5 @@
-package ACKC;
+package robot_ACéKaCé;
+
 public class RobotMenager {
 
 	private String nom;
@@ -7,20 +8,12 @@ public class RobotMenager {
 	public Plateau plateau;
 	public Outil outil;
 
-	public RobotMenager(String nom, BrasRobotique brasRobotique, Capteur capteur, Plateau plateau, Outil outil, Capteur[] capteurs) {
+	public RobotMenager(String nom, BrasRobotique brasRobotique, Capteur capteur, Plateau plateau, Outil outil) {
 		this.nom = nom;
 		this.brasRobotique = brasRobotique;
+		this.capteur = capteur;
 		this.plateau = plateau;
 		this.outil = outil;
-		this.capteur = capteur;
-		
-		this.capteur = new Capteur(this.plateau, this.brasRobotique, this.outil, capteurs);
-	}
-
-	public RobotMenager() {
-		this.nom = "rafbot";
-		this.brasRobotique = brasRobotique;
-		this.plateau = plateau;
 	}
 
 	public void effectuerTache() {
@@ -74,16 +67,16 @@ public class RobotMenager {
 	public void setOutil(Outil outil) {
 		this.outil = outil;
 	}
+
 }
 
 class BrasRobotique {
 	public void saisir(Outil outil) {
-		// Code pour saisir l'outil avec le bras du robot
-	
+		// Code pour saisir loutil avec le bras du robot
 	}
 
 	public void lacher(Outil outil) {
-		// Code pour relâcher l'outil avec le bras du robot
+		// Code pourrelacher l'outil avec le bras du robot
 	}
 
 	public void remonter() {
@@ -91,18 +84,45 @@ class BrasRobotique {
 	}
 
 	public void descendre() {
-		// Code pour descendre le bras du robot
+		// Code pour descendre le bras du robot 
+	}
+}
+
+class Capteur {
+	public boolean detecterObstacle() {
+		// Code pour detecter si il ya un obstacle
+		return false; 
 	}
 }
 
 class Plateau {
-	// Code pour la classe Plateau
+	// Code pour la class plateau
 }
 
 class Outil {
 	public void nettoyer(Plateau plateau) {
 		// Code pour nettoyer le plateau avec l'outil
+	
+	}	
+	
+	
+	
+	// a faire 
+	//	@Override
+	//	public String toString() {
+
+		//	return "Coordonnees X (en m) : " + this.coordonneeXEnM + "\nCoordonnees Y (en m) : " + this.coordonneeYEnM
+		//			+ "\nAngle (en degres) : " + this.angleEnDegres + "\nBras gauche leve : " + this.brasGaucheLeve
+		//			+ "\nBras droit leve : " + this.brasDroitLeve + "\nPince femeee : " + this.pinceFermee
+		//			+ "\nLanterne allumee : " + this.lanterneAllumee + "\n---------------------";
+
+	
+	
+	
+	
+	
+	
 	}
+	
+	
 }
-
-
