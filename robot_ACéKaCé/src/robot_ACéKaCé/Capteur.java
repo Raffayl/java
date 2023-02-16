@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 <<<<<<< HEAD:Robot_ACKC/src/ACKC/Capteur.java
 =======
+=======
+>>>>>>> parent of d714848 (config ACKC)
 package robot_ACéKaCé;
 
 
