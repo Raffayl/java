@@ -4,7 +4,10 @@ public class App {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of d714848 (config ACKC)
 =======
 >>>>>>> parent of d714848 (config ACKC)
 	public static void main(String[] args) {
@@ -12,6 +15,9 @@ public class App {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of d714848 (config ACKC)
+=======
 >>>>>>> parent of d714848 (config ACKC)
 =======
 >>>>>>> parent of d714848 (config ACKC)
