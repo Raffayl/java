@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author RMuller
- *
- */
-module ACKC {
-}

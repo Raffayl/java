@@ -6,6 +6,7 @@ public class RobotMenager {
 	public BrasRobotique brasRobotique;
 	public Capteur capteur;
 	public Plateau plateau;
+<<<<<<< HEAD
 	public Outil outil;
 
 	public RobotMenager(String nom, BrasRobotique brasRobotique, Capteur capteur, Plateau plateau, Outil outil) {
@@ -14,6 +15,27 @@ public class RobotMenager {
 		this.capteur = capteur;
 		this.plateau = plateau;
 		this.outil = outil;
+=======
+	//public enum Plateau {}
+	public Outil outil;
+ //public enum Outil {couteau,fouet,feuille;}
+	public RobotMenager(String nom, BrasRobotique brasRobotique, Capteur capteur, Plateau plateau, Outil outil, Sensor[] capteurs) {
+	    this.nom = nom;
+	    this.brasRobotique = brasRobotique;
+	    this.plateau = plateau;
+	    this.outil = outil;
+	    
+	    
+	    // this.capteur = new Capteur(plateau, brasRobotique, outil, capteurs);	
+	    this.capteur = new Capteur(this.plateau, this.brasRobotique, this.outil, capteurs);
+	}
+	
+	public RobotMenager () {
+		 this.nom = "rafbot";
+		    this.brasRobotique = brasRobotique;
+		    this.plateau = plateau;
+	//	    this.outil = "couteau,fouet,feuille";
+>>>>>>> parent of d714848 (config ACKC)
 	}
 
 	public void effectuerTache() {
@@ -67,7 +89,10 @@ public class RobotMenager {
 	public void setOutil(Outil outil) {
 		this.outil = outil;
 	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of d714848 (config ACKC)
 }
 
 class BrasRobotique {
@@ -84,6 +109,7 @@ class BrasRobotique {
 	}
 
 	public void descendre() {
+<<<<<<< HEAD
 		// Code pour descendre le bras du robot 
 	}
 }
@@ -94,6 +120,17 @@ class Capteur {
 		return false; 
 	}
 }
+=======
+		// Code pour descendre le bras du robot
+	}
+}
+
+
+
+
+
+
+>>>>>>> parent of d714848 (config ACKC)
 
 class Plateau {
 	// Code pour la class plateau
@@ -102,6 +139,7 @@ class Plateau {
 class Outil {
 	public void nettoyer(Plateau plateau) {
 		// Code pour nettoyer le plateau avec l'outil
+<<<<<<< HEAD
 	
 	}	
 	
@@ -126,3 +164,18 @@ class Outil {
 	
 	
 }
+=======
+
+	}
+
+	
+	 @Override
+	 public String toString() {
+		 return "nom : "+this.nom + "BrasRobotique :" + this.BrasRobotique + " Capteur : " + this.capteur + "Plateau : "+this.Plateau + "Outil : "+ Outil;
+	 }	
+	
+	
+
+	}
+
+>>>>>>> parent of d714848 (config ACKC)
