@@ -1,7 +1,10 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD:Robot_ACKC/src/ACKC/Capteur.java
 =======
+=======
+>>>>>>> parent of d714848 (config ACKC)
 =======
 >>>>>>> parent of d714848 (config ACKC)
 =======

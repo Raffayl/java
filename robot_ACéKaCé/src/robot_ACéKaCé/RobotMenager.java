@@ -9,6 +9,7 @@ public class RobotMenager {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public Outil outil;
 
 	public RobotMenager(String nom, BrasRobotique brasRobotique, Capteur capteur, Plateau plateau, Outil outil) {
@@ -18,6 +19,8 @@ public class RobotMenager {
 		this.plateau = plateau;
 		this.outil = outil;
 =======
+=======
+>>>>>>> parent of d714848 (config ACKC)
 =======
 >>>>>>> parent of d714848 (config ACKC)
 =======
@@ -43,6 +46,9 @@ public class RobotMenager {
 	//	    this.outil = "couteau,fouet,feuille";
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of d714848 (config ACKC)
+=======
 >>>>>>> parent of d714848 (config ACKC)
 =======
 >>>>>>> parent of d714848 (config ACKC)
@@ -104,7 +110,10 @@ public class RobotMenager {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of d714848 (config ACKC)
 =======
 >>>>>>> parent of d714848 (config ACKC)
 =======
@@ -130,6 +139,7 @@ class BrasRobotique {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		// Code pour descendre le bras du robot 
 	}
 }
@@ -145,6 +155,8 @@ class Capteur {
 >>>>>>> parent of d714848 (config ACKC)
 =======
 >>>>>>> parent of d714848 (config ACKC)
+=======
+>>>>>>> parent of d714848 (config ACKC)
 		// Code pour descendre le bras du robot
 	}
 }
@@ -156,6 +168,9 @@ class Capteur {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of d714848 (config ACKC)
+=======
 >>>>>>> parent of d714848 (config ACKC)
 =======
 >>>>>>> parent of d714848 (config ACKC)
@@ -169,6 +184,7 @@ class Plateau {
 class Outil {
 	public void nettoyer(Plateau plateau) {
 		// Code pour nettoyer le plateau avec l'outil
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -201,6 +217,8 @@ class Outil {
 >>>>>>> parent of d714848 (config ACKC)
 =======
 >>>>>>> parent of d714848 (config ACKC)
+=======
+>>>>>>> parent of d714848 (config ACKC)
 
 	}
 
@@ -216,6 +234,9 @@ class Outil {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of d714848 (config ACKC)
+=======
 >>>>>>> parent of d714848 (config ACKC)
 =======
 >>>>>>> parent of d714848 (config ACKC)
