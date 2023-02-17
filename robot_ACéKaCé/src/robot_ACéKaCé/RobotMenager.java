@@ -6,54 +6,31 @@ public class RobotMenager {
 	public BrasRobotique brasRobotique;
 	public Capteur capteur;
 	public Plateau plateau;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	public Outil outil;
 
-	public RobotMenager(String nom, BrasRobotique brasRobotique, Capteur capteur, Plateau plateau, Outil outil) {
+	// remove duplicate declaration of Outil outil
+	// public enum Plateau {}
+	// public Outil outil;
+
+	// add missing RobotMenager constructor with Sensor[] capteurs parameter
+	public RobotMenager(String nom, BrasRobotique brasRobotique, Capteur capteur, Plateau plateau, Outil outil,
+			Sensor[] capteurs) {
 		this.nom = nom;
 		this.brasRobotique = brasRobotique;
-		this.capteur = capteur;
 		this.plateau = plateau;
 		this.outil = outil;
-=======
-=======
->>>>>>> parent of d714848 (config ACKC)
-=======
->>>>>>> parent of d714848 (config ACKC)
-=======
->>>>>>> parent of d714848 (config ACKC)
-	//public enum Plateau {}
-	public Outil outil;
- //public enum Outil {couteau,fouet,feuille;}
-	public RobotMenager(String nom, BrasRobotique brasRobotique, Capteur capteur, Plateau plateau, Outil outil, Sensor[] capteurs) {
-	    this.nom = nom;
-	    this.brasRobotique = brasRobotique;
-	    this.plateau = plateau;
-	    this.outil = outil;
-	    
-	    
-	    // this.capteur = new Capteur(plateau, brasRobotique, outil, capteurs);	
-	    this.capteur = new Capteur(this.plateau, this.brasRobotique, this.outil, capteurs);
+
+		// this.capteur = new Capteur(plateau, brasRobotique, outil, capteurs);
+		this.capteur = new Capteur(this.plateau, this.brasRobotique, this.outil, capteurs);
 	}
-	
-	public RobotMenager () {
-		 this.nom = "rafbot";
-		    this.brasRobotique = brasRobotique;
-		    this.plateau = plateau;
-	//	    this.outil = "couteau,fouet,feuille";
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of d714848 (config ACKC)
-=======
->>>>>>> parent of d714848 (config ACKC)
-=======
->>>>>>> parent of d714848 (config ACKC)
-=======
->>>>>>> parent of d714848 (config ACKC)
+
+	public RobotMenager() {
+		this.nom = "rafbot";
+		// initialize empty instances of BrasRobotique, Plateau, and Outil
+		this.brasRobotique = new BrasRobotique();
+		this.plateau = new Plateau();
+		this.outil = new Outil();
 	}
 
 	public void effectuerTache() {
@@ -107,28 +84,25 @@ public class RobotMenager {
 	public void setOutil(Outil outil) {
 		this.outil = outil;
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> parent of d714848 (config ACKC)
-=======
->>>>>>> parent of d714848 (config ACKC)
-=======
->>>>>>> parent of d714848 (config ACKC)
-=======
->>>>>>> parent of d714848 (config ACKC)
+	
+	// override toString() method to display object properties
+	@Override
+	public String toString() {
+		return "nom: " + this.nom + " BrasRobotique: " + this.brasRobotique + " Capteur: " + this.capteur
+				+ " Plateau: " + this.plateau + " Outil: " + this.outil;
+	}
 }
 
 class BrasRobotique {
+	// add default constructor
+	public BrasRobotique() {}
+	
 	public void saisir(Outil outil) {
-		// Code pour saisir loutil avec le bras du robot
+		// Code pour saisir l'outil avec le bras du robot
 	}
 
 	public void lacher(Outil outil) {
-		// Code pourrelacher l'outil avec le bras du robot
+		// Code pour relâcher l'outil avec le bras du robot
 	}
 
 	public void remonter() {
@@ -136,109 +110,4 @@ class BrasRobotique {
 	}
 
 	public void descendre() {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-		// Code pour descendre le bras du robot 
-	}
-}
-
-class Capteur {
-	public boolean detecterObstacle() {
-		// Code pour detecter si il ya un obstacle
-		return false; 
-	}
-}
-=======
-=======
->>>>>>> parent of d714848 (config ACKC)
-=======
->>>>>>> parent of d714848 (config ACKC)
-=======
->>>>>>> parent of d714848 (config ACKC)
-		// Code pour descendre le bras du robot
-	}
-}
-
-
-
-
-
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of d714848 (config ACKC)
-=======
->>>>>>> parent of d714848 (config ACKC)
-=======
->>>>>>> parent of d714848 (config ACKC)
-=======
->>>>>>> parent of d714848 (config ACKC)
-
-class Plateau {
-	// Code pour la class plateau
-}
-
-class Outil {
-	public void nettoyer(Plateau plateau) {
-		// Code pour nettoyer le plateau avec l'outil
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-	
-	}	
-	
-	
-	
-	// a faire 
-	//	@Override
-	//	public String toString() {
-
-		//	return "Coordonnees X (en m) : " + this.coordonneeXEnM + "\nCoordonnees Y (en m) : " + this.coordonneeYEnM
-		//			+ "\nAngle (en degres) : " + this.angleEnDegres + "\nBras gauche leve : " + this.brasGaucheLeve
-		//			+ "\nBras droit leve : " + this.brasDroitLeve + "\nPince femeee : " + this.pinceFermee
-		//			+ "\nLanterne allumee : " + this.lanterneAllumee + "\n---------------------";
-
-	
-	
-	
-	
-	
-	
-	}
-	
-	
-}
-=======
-=======
->>>>>>> parent of d714848 (config ACKC)
-=======
->>>>>>> parent of d714848 (config ACKC)
-=======
->>>>>>> parent of d714848 (config ACKC)
-
-	}
-
-	
-	 @Override
-	 public String toString() {
-		 return "nom : "+this.nom + "BrasRobotique :" + this.BrasRobotique + " Capteur : " + this.capteur + "Plateau : "+this.Plateau + "Outil : "+ Outil;
-	 }	
-	
-	
-
-	}
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of d714848 (config ACKC)
-=======
->>>>>>> parent of d714848 (config ACKC)
-=======
->>>>>>> parent of d714848 (config ACKC)
-=======
->>>>>>> parent of d714848 (config ACKC)
+		// Code
