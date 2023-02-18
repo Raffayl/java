@@ -10,7 +10,7 @@ public class RobotMenager {
 	public RobotMenager() {
 		this.nom = "rafbot";
 		this.brasRobotique = new BrasRobotique();
-		this.outil = Outil.COUTEAU; // Par défaut, on utilise le couteau
+		this.outil = Outil.COUTEAU; 
 	}
 
 	public RobotMenager(String nom, BrasRobotique brasRobotique, Outil outil) {
@@ -88,13 +88,13 @@ public class RobotMenager {
 		public abstract void use(BrasRobotique brasRobotique);
 
 		public void saisir(BrasRobotique brasRobotique) {
-			brasRobotique.descendre();
 			brasRobotique.fermerPince();
+			brasRobotique.descendre();
 		}
 
 		public void lacher(BrasRobotique brasRobotique) {
-			brasRobotique.ouvrirPince();
 			brasRobotique.remonter();
+			brasRobotique.ouvrirPince();
 		}
 	}
 }

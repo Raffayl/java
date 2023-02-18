@@ -1,36 +1,33 @@
 package ACKC;
 
-
 public class App {
 
+public static void main(String[] args) {
 
-    public static void main(String[] args) {
-        // Créer un robot avec des valeurs spécifiques pour les paramètres
-        BrasRobotique brasRobotique1 = new BrasRobotique();
-        Plateau plateau1 = new Plateau();
-        Plateau plateau = null;
-		BrasRobotique brasRobotique = null;
-		Capteur capteur1 = new Capteur(plateau, brasRobotique, new Outil(), new Capteur[]{});
-        Outil outil1 = new Outil();
-        RobotMenager robot1 = new RobotMenager("Robot1", brasRobotique1, capteur1, plateau1, outil1, new Capteur[]{});
+	// Créer un nouveau robot avec les paramètres par défaut
+	RobotMenager robot = new RobotMenager();
 
-        // Appeler la méthode pour effectuer la tâche du robot
-        robot1.effectuerTache();
+	// Changer le nom du robot
+	robot.setNom("RafBot");
 
-        // Créer un robot avec des valeurs par défaut pour les paramètres
-        RobotMenager robot2 = new RobotMenager();
+	// Changer l'outil utilisé par le robot
+	robot.setOutil(RobotMenager.Outil.FOUET);
 
-        // Changer le nom du robot2
-        robot2.setNom("RafBot");
+	// Effectuer une tâche avec le robot
+	robot.effectuerTache();
+	
+	robot.setOutil(RobotMenager.Outil.FEUILLE);
+	robot.setNom("RafBotPetrin");
+	robot.effectuerTache();
 
-        // Changer le plateau associé au robot2
-        Plateau plateau2 = new Plateau();
-        robot2.setPlateau(plateau2);
+	BrasRobotique brasRobotique = robot.getBrasRobotique();
 
-        // Appeler la méthode pour effectuer la tâche du robot2
-        robot2.effectuerTache();
-        
-        // Changer le plateau associé au robot2
-        robot2.setPlateau(plateau1);
-    }
+	brasRobotique.remonter();
+	brasRobotique.ouvrirPince();
+	robot.getOutil().saisir(brasRobotique);
+	robot.getOutil().use(brasRobotique);
+	brasRobotique.remonter();
+	robot.getOutil().lacher(brasRobotique);
+	brasRobotique.ouvrirPince();
+}
 }

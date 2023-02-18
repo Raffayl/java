@@ -1,12 +1,16 @@
 package jeu_de_dame;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+import jeu_de_dame.Pawn.King.Move;
 
 enum Color {
 	WHITE, BLACK
 }
 
-class Piece {
+abstract class Piece {
 	private Color color;
 	private int x;
 	private int y;
@@ -28,137 +32,218 @@ class Piece {
 	public int getY() {
 		return y;
 	}
-}
 
-class Move {
-	private int startX;
-	private int startY;
-	private int endX;
-	private int endY;
+	public abstract boolean isValidMove(Move move, Piece[][] board);
 
-	public Move(int startX, int startY, int endX, int endY) {
-		this.startX = startX;
-		this.startY = startY;
-		this.endX = endX;
-		this.endY = endY;
+	public boolean canMove(Piece[][] board, int endX, int endY) {
+		int startX = getX();
+		int startY = getY();
+
+		// vérifier si la case de destination est sur le plateau
+		if (endX < 0 || endX > 7 || endY < 0 || endY > 7) {
+			return false;
+		}
+
+		// vérifier si la case de destination est occupée par une pièce de la même
+		// couleur
+		if (board[endX][endY] != null && board[endX][endY].getColor() == color) {
+			return false;
+		}
+
+		// vérifier si la pièce se déplace dans la bonne direction
+		if (color == Color.WHITE && endX <= startX) {
+			return false;
+		}
+
+		if (color == Color.BLACK && endX >= startX) {
+			return false;
+		}
+
+		// vérifier si la pièce se déplace en diagonale
+		if (Math.abs(endX - startX) != Math.abs(endY - startY)) {
+			return false;
+		}
+
+		return true;
 	}
 
-	public int getStartX() {
-		return startX;
-	}
+	public boolean canCapture(Piece[][] board, int endX, int endY) {
+		int startX = getX();
+		int startY = getY();
 
-	public int getStartY() {
-		return startY;
-	}
+		// vérifier si la case de destination est sur le plateau
+		if (endX < 0 || endX > 7 || endY < 0 || endY > 7) {
+			return false;
+		}
 
-	public int getEndX() {
-		return endX;
-	}
+		// vérifier si la case de destination est occupée par une pièce de la même
+		// couleur
+		if (board[endX][endY] != null && board[endX][endY].getColor() == color) {
+			return false;
+		}
 
-	public int getEndY() {
-		return endY;
-	}
-}
+		// vérifier si la pièce se déplace dans la bonne direction
+		if (color == Color.WHITE && endX <= startX) {
+			return false;
+		}
 
-class Player {
-	private String name;
-	private Color color;
+		if (color == Color.BLACK && endX >= startX) {
+			return false;
+		}
 
-	public Player(String name, Color color) {
-		this.name = name;
-		this.color = color;
-	}
+		// vérifier si une pièce est capturée
+		if (Math.abs(endX - startX) == 2) {
+			int captureX = (startX + endX) / 2;
+			int captureY = (startY + endY) / 2;
+			Piece capturedPiece = board[captureX][captureY];
+			if (capturedPiece == null || capturedPiece.getColor() == color) {
+				return false;
+			}
+		}
 
-	public String getName() {
-		return name;
-	}
-
-	public Color getColor() {
-		return color;
-	}
-
-	public Move getMove(Board board) {
-		Scanner Scanner = new Scanner(System.in);
-		System.out.println(getName() + " (" + getColor() + ") turn:");
-		System.out.print("Enter start x: ");
-		int startX = Scanner.nextInt();
-		System.out.print("Enter start y: ");
-		int startY = Scanner.nextInt();
-		System.out.print("Enter end x: ");
-		int endX = Scanner.nextInt();
-		System.out.print("Enter end y: ");
-		int endY = Scanner.nextInt();
-		return new Move(startX, startY, endX, endY);
-	}
-}
-
-class Board {
-	private Piece[][] grid;
-
-	public Board() {
-		this.grid = new Piece[8][8];
-	}
-
-	public void makeMove(Move move) {
-		// code to make the move on the board
-	}
-
-	public boolean isGameOver() {
-		// code to determine if the game is over
-		return false;
+		return true;
 	}
 }
 
-class Queen extends Piece {
-	public Queen(Color color, int x, int y) {
+abstract class Pawn extends Piece {
+	private boolean isKing;
+
+	public Pawn(Color color, int x, int y) {
 		super(color, x, y);
+		this.isKing = false;
 	}
 
-	public class Pawn {
-		private int x;
-		private int y;
-		private boolean isWhite;
-		private boolean isQueen;
-
-		public Pawn(int x, int y, boolean isWhite, boolean isQueen) {
-			this.x = x;
-			this.y = y;
-			this.isWhite = isWhite;
-			this.isQueen = isQueen;
+	abstract class King extends Piece {
+		public King(Color color, int x, int y) {
+			super(color, x, y);
 		}
 
-		class Pawnmoove extends Piece {
-			public Pawnmoove(Color color, int x, int y) {
-				super(color, x, y);
+		class Player {
+			private String name;
+			private Color color;
+
+			public Player(String name, Color color) {
+				this.name = name;
+				this.color = color;
 			}
 
-			public boolean isValidMove(Move move, Piece[][] board) {
-				int destX = move.getEndX();
-				int destY = move.getEndY();
-				int startX = move.getStartX();
-				int startY = move.getStartY();
-				int direction = getColor() == Color.WHITE ? 1 : -1;
+			public String getName() {
+				return name;
+			}
 
-				if (startX + direction == destX && startY == destY) {
-					// Le mouvement est un déplacement simple d'une case vers l'avant
-					if (board[destX][destY] == null) {
-						return true;
-					} else {
-						return false;
-					}
-				} else if (startX + direction == destX && Math.abs(startY - destY) == 1) {
-					// Le mouvement est une prise de pièce
-					if (board[destX][destY] != null && board[destX][destY].getColor() != getColor()) {
-						return true;
-					} else {
-						return false;
-					}
-				} else {
-					// Le mouvement n'est pas valide pour une pièce Pawn
-					return false;
-					
-				}
+			public Color getColor() {
+				return color;
+			}
+
+			public Move getMove(Scanner scanner) {
+				System.out.print(name + ", entrez les coordonnées de la case de départ (ex. a2) : ");
+				String start = scanner.next();
+				System.out.print(name + ", entrez les coordonnées de la case d'arrivée (ex. b3) : ");
+				String end = scanner.next();
+				int startX = start.charAt(0) - 'a';
+				int startY = Integer.parseInt(start.charAt(1) + "") - 1;
+				int endX = end.charAt(0) - 'a';
+				int endY = Integer.parseInt(end.charAt(1) + "") - 1;
+				return new Move(startX, startY, endX, endY);
 			}
 		}
+
+		class Move {
+		    private int startX;
+		    private int startY;
+		    private int endX;
+		    private int endY;
+
+		    public Move(int startX, int startY, int endX, int endY) {
+		        this.startX = startX;
+		        this.startY = startY;
+		        this.endX = endX;
+		        this.endY = endY;
+		    }
+
+		    public int getStartX() {
+		        return startX;
+		    }
+
+		    public int getStartY() {
+		        return startY;
+		    }
+
+		    public int getEndX() {
+		        return endX;
+		    }
+
+		    public int getEndY() {
+		        return endY;
+		    }
+
+		    public boolean isValid(Piece[][] board) {
+		        Piece piece = board[startX][startY];
+		        if (piece == null) {
+		            return false;
+		        }
+		    		  // Vérifier si le mouvement est valide pour cette pièce
+		            if (!piece.isValidMove(this, board)) {
+		                return false;
+		            }
+
+		            // Vérifier si la pièce peut capturer une autre pièce
+		            if (piece.canCapture(board, endX, endY)) {
+		                return true;
+		            }
+
+		            // Vérifier si la case d'arrivée est vide
+		            if (board[endX][endY] != null) {
+		                return false;
+		            }
+
+		            // Vérifier si la pièce se déplace de deux cases en avant
+		            if (Math.abs(endX - startX) == 2) {
+		                int captureX = (startX + endX) / 2;
+		                int captureY = (startY + endY) / 2;
+		                Piece capturedPiece = board[captureX][captureY];
+		                if (capturedPiece == null || capturedPiece.getColor() == piece.getColor()) {
+		                    return false;
+		                }
+		            }
+
+		            // Vérifier si la pièce atteint le bord opposé pour devenir une dame
+		            if (endX == 0 && piece.getColor() == Color.BLACK) {
+		                piece.setIsKing(true);
+		            } else if (endX == 7 && piece.getColor() == Color.WHITE) {
+		                piece.setIsKing(true);
+		            }
+
+		            return true;
+		        }
+
+		        public Piece[][] execute(Piece[][] board) {
+		            Piece[][] newBoard = cloneBoard(board);
+		            newBoard[startX][startY] = null;
+		            newBoard[endX][endY] = board[startX][startY];
+
+		            // Capturer une pièce si nécessaire
+		            if (Math.abs(endX - startX) == 2) {
+		                int captureX = (startX + endX) / 2;
+		                int captureY = (startY + endY) / 2;
+		                newBoard[captureX][captureY] = null;
+		            }
+
+		            return newBoard;
+		        }
+
+		        private Piece[][] cloneBoard(Piece[][] board) {
+		            Piece[][] newBoard = new Piece[8][8];
+		            for (int i = 0; i < 8; i++) {
+		                for (int j = 0; j < 8; j++) {
+		                    Piece piece = board[i][j];
+		                    if (piece != null) {
+		                        newBoard[i][j] = piece.copy();
+		                    }
+		                }
+		            }
+		            return newBoard;
+		        }
+		    }
 	}
 }

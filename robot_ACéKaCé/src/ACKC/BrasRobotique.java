@@ -15,26 +15,26 @@ public class BrasRobotique {
 
 	}
 
-	public void saisir() {
-		fermerPince(); // Fermer la pince pour saisir l'outil
+	public void saisir(BrasRobotique brasRobotique) {
+		brasRobotique.fermerPince();
 	}
 
-	public void use() {
+	public void use(BrasRobotique brasRobotique) {
 		System.out.println("Le bras robotique utilise un outil");
 	}
 
-	public void lacher() {
-		ouvrirPince(); // Ouvrir la pince pour relâcher l'outil
+	public void lacher(BrasRobotique brasRobotique) {
+		brasRobotique.ouvrirPince();
 	}
 
 	public void remonter() {
 		this.hauteur += 5;
-		System.out.println("Le bras robotique remonte de 5 unit's.");
+		System.out.println("Le bras robotique remonte");
 	}
 
 	public void descendre() {
 		this.hauteur -= 5;
-		System.out.println("Le bras robotique descend de 5 unit's.");
+		System.out.println("Le bras robotique descend");
 	}
 
 	public double getHauteur() {
@@ -50,7 +50,7 @@ public class BrasRobotique {
 			System.out.println("Fermeture de la pince");
 			pinceOuverte = false;
 		} else {
-			System.out.println("La pince est déjà fermée !");
+			System.out.println("La pince est deja fermee !");
 		}
 	}
 
@@ -59,7 +59,7 @@ public class BrasRobotique {
 			System.out.println("Ouverture de la pince");
 			pinceOuverte = true;
 		} else {
-			System.out.println("La pince est déjà ouverte !");
+			System.out.println("La pince est daja ouverte !");
 		}
 	}
 }
