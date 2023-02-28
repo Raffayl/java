@@ -288,13 +288,14 @@ public class DameGame {
 
 
 	public boolean checkWin(String currentPlayer2) {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
 	public void movePiece(int startX, int startY, int endX, int endY) {
-		// TODO Auto-generated method stub
+
 		
 	}
+	
 
 }
