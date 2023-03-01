@@ -5,8 +5,8 @@ import java.util.Random;
 public class Robot {
 
 	private String nomRobot;
-	private boolean estAllumer;
-	private boolean peutSeDeplacer;
+	public boolean estAllumer;
+	public boolean peutSeDeplacer;
 	private boolean avecCargaison;
 
 	public enum Deplacement {
@@ -33,6 +33,7 @@ public class Robot {
 
 	public boolean seDeplacer() {
 		int distance = calculerDistance();
+	
 		if (this.estAllumer) {
 			if (distance < 10) {
 				this.peutSeDeplacer = false;
@@ -48,8 +49,9 @@ public class Robot {
 	}
 
 	public String deplacer(Deplacement move) {
+		this.peutSeDeplacer = this.seDeplacer();
 		String str = "";
-		if (this.peutSeDeplacer) {
+		if (this.peutSeDeplacer && this.estAllumer) {
 			switch (move) {
 			case AVANT: {
 				str = "Le robot avance";
@@ -60,11 +62,11 @@ public class Robot {
 				break;
 			}
 			case GAUCHE: {
-				str = "Le robot tourne à gauche";
+				str = "Le robot tourne a gauche";
 				break;
 			}
 			case DROITE: {
-				str = "Le robot tourne à droite";
+				str = "Le robot tourne a droite";
 				break;
 			}
 			default: {
@@ -72,36 +74,38 @@ public class Robot {
 			}
 			}
 		} else {
+			this.peutSeDeplacer = false;
 			str = "le robot ne peut pas se deplacer.";
+
 		}
-		
+
 		return str;
 	}
 
 	public boolean chargerCargaison() {
-		if (!this.avecCargaison) {
+		if (!this.avecCargaison && this.estAllumer) {
 			this.avecCargaison = true;
 			return true;
 		} else {
 			return false;
 		}
-}
-
-	public boolean dechargerCargaison(){
-		if (!this.avecCargaison) {
-			this.avecCargaison = true;
-			return true;
-				} else {
-					return false;
-				}
-		
 	}
 
-	public Robot(String _nomRobot, boolean _estAllumer, boolean _peutSeDeplacer, boolean _avecCargaison) {
+	public boolean dechargerCargaison() {
+		if (this.avecCargaison&& this.estAllumer) {
+			this.avecCargaison = false;
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
+	public Robot(String _nomRobot) {
 		this.nomRobot = _nomRobot;
-		this.estAllumer = _estAllumer;
-		this.peutSeDeplacer = _peutSeDeplacer;
-		this.avecCargaison = _avecCargaison;
+		this.estAllumer = false;
+		this.peutSeDeplacer = false;
+		this.avecCargaison = false;
 	}
 
 	public String getname() {
@@ -120,12 +124,14 @@ public class Robot {
 		return distance;
 	}
 
+	@Override
 	public String toString() {
-		String str = "Nom du robot : " + this.nomRobot + "\n";
-		str += "etat d'allumage : " + (this.estAllumer ? "allumer" : "eteint") + "\n";
-		str += "Capacite de deplacement : " + (this.peutSeDeplacer ? "oui" : "non") + "\n";
-		str += "Charge : " + (this.avecCargaison ? "charger" : "non charger") + "\n";
+		String str = "Nom du robot : " + this.nomRobot + "\n" + "etat d'allumage : " + (this.estAllumer) + "\n"
+				+ "Capacite de deplacement : " + (this.peutSeDeplacer) + "\n" + "Charge : " + (this.avecCargaison)
+				+ "\n";
 		return str;
 	}
+
+	
 
 }
